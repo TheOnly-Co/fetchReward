@@ -1,7 +1,19 @@
 import yaml
+import boto3
 
 with open("server.yaml", 'r') as stream:
     try:
-        print(yaml.safe_load(stream))
+        #  print(yaml.safe_load(stream))
+        x = yaml.safe_load(stream)
+        print(x['server']['instance_type'])
     except yaml.YAMLError as exc:
         print(exc)
+
+#client = boto3.client('ec2')
+# resp = client.run_instances(ImageId='',
+#                      InstanceType= exc.server.instance_type,
+#                      MinCount= exc.server.min_count,
+#                      MaxCount= exc.server.max_count)
+ 
+#for instance in resp['Instances']:
+#    print(instance['instanceId'])
