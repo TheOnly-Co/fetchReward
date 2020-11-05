@@ -1,19 +1,14 @@
 import yaml
 import boto3
+import time 
 
-with open("server.yaml", 'r') as stream:
-    try:
-        #  print(yaml.safe_load(stream))
-        x = yaml.safe_load(stream)
-        print(x['server']['instance_type'])
-        client = boto3.client('ec2')
-        resp = client.run_instances(ImageId= 'ami-7d0c6314',
-                      InstanceType= x["server"]["instance_type"],
-                      MinCount= x["server"]["min_count"],
-                      MaxCount= x["server"]["max_count"])
-    except yaml.YAMLError as exc:
-        print(exc)
+stream = open("server.yaml",'r')
 
- 
-#for instance in resp['Instances']:
-#    print(instance['instanceId'])
+data = yaml.load(stream)
+
+### create instance
+s = boto3.Session(region_name="us-west-2")
+ec2 = s.resource('ec2')
+
+instance = ec2.create_instances(ImageId='ami-0528a5175983e7f28',KeyName='infra-master-key',InstanceType=data["server"]["instance_type"],SubnetId='subnet-04879e65a37dc5864',MaxCount=1,MinCount=1) 
+print("instance created")
