@@ -7,7 +7,7 @@ with open("server.yaml", 'r') as stream:
         x = yaml.safe_load(stream)
         print(x['server']['instance_type'])
         client = boto3.client('ec2')
-        resp = client.run_instances('ami-7d0c6314',
+        resp = client.run_instances(ImageId= 'ami-7d0c6314',
                       InstanceType= x["server"]["instance_type"],
                       MinCount= x["server"]["min_count"],
                       MaxCount= x["server"]["max_count"])
