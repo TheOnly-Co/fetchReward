@@ -6,14 +6,14 @@ with open("server.yaml", 'r') as stream:
         #  print(yaml.safe_load(stream))
         x = yaml.safe_load(stream)
         print(x['server']['instance_type'])
+        client = boto3.client('ec2')
+        resp = client.run_instances(ImageId='',
+                      InstanceType= x["server"]["instance_type"],
+                      MinCount= x["server"]["min_count"],
+                      MaxCount= x["server"]["max_count"])
     except yaml.YAMLError as exc:
         print(exc)
 
-#client = boto3.client('ec2')
-# resp = client.run_instances(ImageId='',
-#                      InstanceType= exc.server.instance_type,
-#                      MinCount= exc.server.min_count,
-#                      MaxCount= exc.server.max_count)
  
 #for instance in resp['Instances']:
 #    print(instance['instanceId'])
