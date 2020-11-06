@@ -20,7 +20,7 @@ instance = ec2.create_instances(ImageId='ami-0528a5175983e7f28',
                                     'DeviceName':data["server"]["volumes"][0]["device"],
                                     'Ebs':{
                                         'VolumeSize':data["server"]["volumes"][0]["size_gb"],
-                                        'VolumeType': 'gp2'
+                                        'VolumeType':data["server"]["volumes"][0]["type"]
                                     }
                                 }]) 
 #print(data["server"]["volumes"][0]["device"])
