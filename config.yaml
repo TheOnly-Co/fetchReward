@@ -1,27 +1,23 @@
-import yaml
-import boto3
-import time 
+server:
+  instance_type: t2.micro
+  ami_type: amzn2
+  architecture: x86_64
+  root_device_type: ebs
+  virtualization_type: hvm
+  min_count: 1
+  max_count: 1
+  volumes:
+    - device: /dev/xvda
+      size_gb: 10
+      type: gp2
+      mount: /
+    - device: /dev/xvdf
+      size_gb: 100
+      type: xfs
+      mount: /data
+  users:
+    - login: user1
+      ssh_key: --user1 ssh public key goes here-- user1@localhost
+    - login: user2
+      ssh_key: --user2 ssh public key goes here-- user2@localhost
 
-stream = open("server.yaml",'r')
-
-data = yaml.load(stream, Loader=yaml.FullLoader)
-
-### create instance
-s = boto3.Session(region_name="us-west-2")
-ec2 = s.resource('ec2')
-
-instance = ec2.create_instances(ImageId='ami-0528a5175983e7f28',
-                                KeyName='infra-master-key',
-                                InstanceType=data["server"]["instance_type"],
-                                SubnetId='subnet-04879e65a37dc5864',
-                                MaxCount=1,
-                                MinCount=1,
-                                BlockDeviceMappings=[{
-                                    'DeviceName':data["server"]["volumes"][0]["device"],
-                                    'Ebs':{
-                                        'VolumeSize':data["server"]["volumes"][0]["size_gb"],
-                                        'VolumeType':data["server"]["volumes"][0]["type"]
-                                    }
-                                }]) 
-#print(data["server"]["volumes"][0]["device"])
-print("instance created")
