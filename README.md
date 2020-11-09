@@ -7,7 +7,7 @@
   - Amazon Web Services
 
 ## How to 
-
+  - Make sure you are logged into AWS in the terminal 😄
   - Make sure you have ```pip``` installed
   - Then, ```pip install pyyaml```
   - Then, ```pip install boto3```
