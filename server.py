@@ -20,7 +20,7 @@ def create_instance():
     instance = ec2.create_instances(ImageId='ami-0528a5175983e7f28',
                                     KeyName=data["server"]["keyName"],
                                     InstanceType=data["server"]["instance_type"],
-                                    SubnetId='subnet-04879e65a37dc5864',
+                                    SubnetId=data["server"]["subnet"],
                                     MaxCount=1,
                                     MinCount=1,
                                     UserData=user_data_script,
@@ -47,7 +47,7 @@ def create_second_instance():
     instance = ec2.create_instances(ImageId='ami-0528a5175983e7f28',
                                     KeyName=data["server"]["keyName"],
                                     InstanceType=data["server"]["instance_type"],
-                                    SubnetId='subnet-04879e65a37dc5864',
+                                    SubnetId=data["server"]["subnet"],
                                     MaxCount=1,
                                     MinCount=1,
                                     UserData=user_data_script,
@@ -72,6 +72,6 @@ def create_second_instance():
 
 
 
-# create_instance()
-# create_second_instance()
+create_instance()
+create_second_instance()
 print("instance created")
