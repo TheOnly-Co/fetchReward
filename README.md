@@ -8,8 +8,8 @@
 
 ## How to 
   1. Preparation/Setup 
-    - Make sure you are logged into AWS in the terminal 😄
-    - Use a Linux or MacOs system, otherwise use [Windows](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) instruction
+     - Make sure you are logged into AWS in the terminal 😄
+     - Use a Linux or MacOs system, otherwise use [Windows](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) instruction
   2. Make sure you have ```pip``` installed
   3. Then, ```pip install pyyaml```
   4. Then, ```pip install boto3```
