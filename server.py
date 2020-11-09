@@ -72,6 +72,6 @@ def create_second_instance():
 
 
 
-create_instance()
-create_second_instance()
+# create_instance()
+# create_second_instance()
 print("instance created")
